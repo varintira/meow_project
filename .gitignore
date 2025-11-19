@@ -1,0 +1,13 @@
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+*.xcuserdata
+
+# Swift Package Manager
+Packages/
+.swiftpm/
+
+# CocoaPods (ถ้ามี)
+Pods/
+Podfile.lock
