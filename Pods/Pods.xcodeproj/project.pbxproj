@@ -1,0 +1,769 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F3504551F07FE8E79A57FE368DA94A7 /* Pods-meow-meowUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFD9E8F8CE5438E64EC4909B104A81 /* Pods-meow-meowUITests-dummy.m */; };
+		626F77A5127FEA5168C91E5B85C059D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		86A4E6CEE1F44C4FA69C5A491A5AC048 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		95B5199E82089BD0BB0B65A360DA7F4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		B5D0F31DC8D70648BA55281267D6B98D /* Pods-meow-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0298D64530E35D74CC7CCF93116C7C14 /* Pods-meow-dummy.m */; };
+		CEEBD4BF69BFAED5EB3DBB20FAD608C0 /* Pods-meow-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F234F92B2A43CC2EA38DB3CBEF85C135 /* Pods-meow-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E537C49DFFDE60473B9CB65AC274D358 /* Pods-meow-meowUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A24F74BC3372D3A7DF5A7E89A8409C1A /* Pods-meow-meowUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4BAB706CBB09BD9DE895CAF3790BC0C /* Pods-meowTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD25E9D91241FC67A97A425A801ACEEB /* Pods-meowTests-dummy.m */; };
+		FEF0786A84E7D64107935E5CE41B8FB5 /* Pods-meowTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2C6722EA01B3318F88C5FD75DA94179 /* Pods-meowTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9D92D5B1CB51855659A91E96591454B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 314B452C8860944E0A252BA20ECCDD4E;
+			remoteInfo = "Pods-meow";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0298D64530E35D74CC7CCF93116C7C14 /* Pods-meow-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-meow-dummy.m"; sourceTree = "<group>"; };
+		0E3983FBF22970F030C86FEEB0075712 /* Pods-meow-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-meow-acknowledgements.plist"; sourceTree = "<group>"; };
+		10A8C3FAC4A14085224F22551E8979A7 /* Pods-meow-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-meow-Info.plist"; sourceTree = "<group>"; };
+		1EDD521D6B2980C13CEA9836660AB7FD /* Pods-meowTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-meowTests.modulemap"; sourceTree = "<group>"; };
+		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3DBFD9E8F8CE5438E64EC4909B104A81 /* Pods-meow-meowUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-meow-meowUITests-dummy.m"; sourceTree = "<group>"; };
+		4D2820BE394A55A9CA360C6126D5CAC1 /* Pods-meow-meowUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-meow-meowUITests-Info.plist"; sourceTree = "<group>"; };
+		593B0550B0157B63C3264D81C40C0C30 /* Pods-meow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-meow.release.xcconfig"; sourceTree = "<group>"; };
+		5B6DF03404D8DFA43DE04477CC545199 /* Pods-meow-meowUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-meow-meowUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		795D6A37EE132712256173726FE24EA8 /* Pods-meow-meowUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-meow-meowUITests.modulemap"; sourceTree = "<group>"; };
+		8C05A1A325D9541E567FDC4F269E681C /* Pods-meow-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-meow-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8D129E83C741E47EA29854ABBDE84170 /* Pods-meowTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-meowTests-Info.plist"; sourceTree = "<group>"; };
+		930E16C1399313AA9DC193C69F5584D2 /* Pods-meow-meowUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-meow-meowUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9A4D513691BBFDC2CE124BDB9D49ED06 /* Pods-meow-meowUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-meow-meowUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A24F74BC3372D3A7DF5A7E89A8409C1A /* Pods-meow-meowUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-meow-meowUITests-umbrella.h"; sourceTree = "<group>"; };
+		A8C96684E2AAC22B7B52DD8EB360B589 /* Pods-meowTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-meowTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A90A00867A188612D13234D898AAAF96 /* Pods-meow.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-meow.modulemap"; sourceTree = "<group>"; };
+		BE09A3097CB484E08447EA87F37B4557 /* Pods-meowTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-meowTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C59E23850FB1A38382EFDC1797E06292 /* Pods-meowTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-meowTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		C7982F607B30B6C2990B5253859460A9 /* Pods-meow */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-meow"; path = Pods_meow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC83A5234C306669375EE22C9E2EA760 /* Pods-meow-meowUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-meow-meowUITests"; path = Pods_meow_meowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DF6A16140067D3ECCF9613ED54098E /* Pods-meowTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-meowTests"; path = Pods_meowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D30B39BFB3975441EA2C4636B26E91C6 /* Pods-meow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-meow.debug.xcconfig"; sourceTree = "<group>"; };
+		E2C6722EA01B3318F88C5FD75DA94179 /* Pods-meowTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-meowTests-umbrella.h"; sourceTree = "<group>"; };
+		E46BBF85FD74B42EBA5BF70D0D540C18 /* Pods-meowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-meowTests.release.xcconfig"; sourceTree = "<group>"; };
+		E74EFF8E9690843826E6C4C31497E203 /* Pods-meow-meowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-meow-meowUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F234F92B2A43CC2EA38DB3CBEF85C135 /* Pods-meow-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-meow-umbrella.h"; sourceTree = "<group>"; };
+		FD25E9D91241FC67A97A425A801ACEEB /* Pods-meowTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-meowTests-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07A3A97EB232DB41356A1C4E8B4F9917 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95B5199E82089BD0BB0B65A360DA7F4D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D46780AABE9DD30276DEC42D12E818C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				626F77A5127FEA5168C91E5B85C059D8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C74057A3FBC980C8BB6575390A2290AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86A4E6CEE1F44C4FA69C5A491A5AC048 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		129B81584548FF543B968C35E1CC1BD0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C7982F607B30B6C2990B5253859460A9 /* Pods-meow */,
+				CC83A5234C306669375EE22C9E2EA760 /* Pods-meow-meowUITests */,
+				D0DF6A16140067D3ECCF9613ED54098E /* Pods-meowTests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		260FF7DB6D51F9D4602C1262EB00A491 /* Pods-meowTests */ = {
+			isa = PBXGroup;
+			children = (
+				1EDD521D6B2980C13CEA9836660AB7FD /* Pods-meowTests.modulemap */,
+				BE09A3097CB484E08447EA87F37B4557 /* Pods-meowTests-acknowledgements.markdown */,
+				C59E23850FB1A38382EFDC1797E06292 /* Pods-meowTests-acknowledgements.plist */,
+				FD25E9D91241FC67A97A425A801ACEEB /* Pods-meowTests-dummy.m */,
+				8D129E83C741E47EA29854ABBDE84170 /* Pods-meowTests-Info.plist */,
+				E2C6722EA01B3318F88C5FD75DA94179 /* Pods-meowTests-umbrella.h */,
+				A8C96684E2AAC22B7B52DD8EB360B589 /* Pods-meowTests.debug.xcconfig */,
+				E46BBF85FD74B42EBA5BF70D0D540C18 /* Pods-meowTests.release.xcconfig */,
+			);
+			name = "Pods-meowTests";
+			path = "Target Support Files/Pods-meowTests";
+			sourceTree = "<group>";
+		};
+		76269D14EBD137A56807E1124F797329 /* Pods-meow-meowUITests */ = {
+			isa = PBXGroup;
+			children = (
+				795D6A37EE132712256173726FE24EA8 /* Pods-meow-meowUITests.modulemap */,
+				930E16C1399313AA9DC193C69F5584D2 /* Pods-meow-meowUITests-acknowledgements.markdown */,
+				5B6DF03404D8DFA43DE04477CC545199 /* Pods-meow-meowUITests-acknowledgements.plist */,
+				3DBFD9E8F8CE5438E64EC4909B104A81 /* Pods-meow-meowUITests-dummy.m */,
+				4D2820BE394A55A9CA360C6126D5CAC1 /* Pods-meow-meowUITests-Info.plist */,
+				A24F74BC3372D3A7DF5A7E89A8409C1A /* Pods-meow-meowUITests-umbrella.h */,
+				9A4D513691BBFDC2CE124BDB9D49ED06 /* Pods-meow-meowUITests.debug.xcconfig */,
+				E74EFF8E9690843826E6C4C31497E203 /* Pods-meow-meowUITests.release.xcconfig */,
+			);
+			name = "Pods-meow-meowUITests";
+			path = "Target Support Files/Pods-meow-meowUITests";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				129B81584548FF543B968C35E1CC1BD0 /* Products */,
+				DC72679AECF9D57BCD4F9433AFFBCE8D /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4801F62A6B08CD9B5410329F1A18FDE /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC72679AECF9D57BCD4F9433AFFBCE8D /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E24EA22EE9DBBE213D7B783C31CBB9FD /* Pods-meow */,
+				76269D14EBD137A56807E1124F797329 /* Pods-meow-meowUITests */,
+				260FF7DB6D51F9D4602C1262EB00A491 /* Pods-meowTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		E24EA22EE9DBBE213D7B783C31CBB9FD /* Pods-meow */ = {
+			isa = PBXGroup;
+			children = (
+				A90A00867A188612D13234D898AAAF96 /* Pods-meow.modulemap */,
+				8C05A1A325D9541E567FDC4F269E681C /* Pods-meow-acknowledgements.markdown */,
+				0E3983FBF22970F030C86FEEB0075712 /* Pods-meow-acknowledgements.plist */,
+				0298D64530E35D74CC7CCF93116C7C14 /* Pods-meow-dummy.m */,
+				10A8C3FAC4A14085224F22551E8979A7 /* Pods-meow-Info.plist */,
+				F234F92B2A43CC2EA38DB3CBEF85C135 /* Pods-meow-umbrella.h */,
+				D30B39BFB3975441EA2C4636B26E91C6 /* Pods-meow.debug.xcconfig */,
+				593B0550B0157B63C3264D81C40C0C30 /* Pods-meow.release.xcconfig */,
+			);
+			name = "Pods-meow";
+			path = "Target Support Files/Pods-meow";
+			sourceTree = "<group>";
+		};
+		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		62200A3A78B48E94E318291D4057DB25 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEF0786A84E7D64107935E5CE41B8FB5 /* Pods-meowTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B2A4A556EEA8BA1B9525D84C6032639 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E537C49DFFDE60473B9CB65AC274D358 /* Pods-meow-meowUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7C1A324F8F47B3478B288CFAAA49CA3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEEBD4BF69BFAED5EB3DBB20FAD608C0 /* Pods-meow-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		211253E9A3BFBA1B86652815FF8726FA /* Pods-meow-meowUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBAC591F6DEFA157CFC7F7A3B684C22C /* Build configuration list for PBXNativeTarget "Pods-meow-meowUITests" */;
+			buildPhases = (
+				7B2A4A556EEA8BA1B9525D84C6032639 /* Headers */,
+				66AAF1DE996932839564B2BA503A3F2A /* Sources */,
+				07A3A97EB232DB41356A1C4E8B4F9917 /* Frameworks */,
+				F4F63429525F745B7B513632C9E34630 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-meow-meowUITests";
+			productName = Pods_meow_meowUITests;
+			productReference = CC83A5234C306669375EE22C9E2EA760 /* Pods-meow-meowUITests */;
+			productType = "com.apple.product-type.framework";
+		};
+		314B452C8860944E0A252BA20ECCDD4E /* Pods-meow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86C7E84FF851571F0FE178B2A9086FB6 /* Build configuration list for PBXNativeTarget "Pods-meow" */;
+			buildPhases = (
+				D7C1A324F8F47B3478B288CFAAA49CA3 /* Headers */,
+				3707D7A7A88CF6C1AA5518E58C64048D /* Sources */,
+				5D46780AABE9DD30276DEC42D12E818C /* Frameworks */,
+				BFC16E5DB1E9C4CBFC86B1BB509C703A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-meow";
+			productName = Pods_meow;
+			productReference = C7982F607B30B6C2990B5253859460A9 /* Pods-meow */;
+			productType = "com.apple.product-type.framework";
+		};
+		B34CBBB08F6F7D8C8049F61DB781AC2C /* Pods-meowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44331D4154F5DED3558FC867BDE9835F /* Build configuration list for PBXNativeTarget "Pods-meowTests" */;
+			buildPhases = (
+				62200A3A78B48E94E318291D4057DB25 /* Headers */,
+				0A58D1F14FD191F16A9BD81F03874E17 /* Sources */,
+				C74057A3FBC980C8BB6575390A2290AB /* Frameworks */,
+				DB0C3D88DE47EFB1387E78C982D4D65F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BC7791233D556D315CFD6F59B24CFCA /* PBXTargetDependency */,
+			);
+			name = "Pods-meowTests";
+			productName = Pods_meowTests;
+			productReference = D0DF6A16140067D3ECCF9613ED54098E /* Pods-meowTests */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 129B81584548FF543B968C35E1CC1BD0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				314B452C8860944E0A252BA20ECCDD4E /* Pods-meow */,
+				211253E9A3BFBA1B86652815FF8726FA /* Pods-meow-meowUITests */,
+				B34CBBB08F6F7D8C8049F61DB781AC2C /* Pods-meowTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BFC16E5DB1E9C4CBFC86B1BB509C703A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB0C3D88DE47EFB1387E78C982D4D65F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F63429525F745B7B513632C9E34630 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A58D1F14FD191F16A9BD81F03874E17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4BAB706CBB09BD9DE895CAF3790BC0C /* Pods-meowTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3707D7A7A88CF6C1AA5518E58C64048D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5D0F31DC8D70648BA55281267D6B98D /* Pods-meow-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66AAF1DE996932839564B2BA503A3F2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F3504551F07FE8E79A57FE368DA94A7 /* Pods-meow-meowUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BC7791233D556D315CFD6F59B24CFCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-meow";
+			target = 314B452C8860944E0A252BA20ECCDD4E /* Pods-meow */;
+			targetProxy = 9D92D5B1CB51855659A91E96591454B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E1542422E1DA5D9A8E7FA05C4872E92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E46BBF85FD74B42EBA5BF70D0D540C18 /* Pods-meowTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-meowTests/Pods-meowTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-meowTests/Pods-meowTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		203F5E262FA042896CE212990660943E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 593B0550B0157B63C3264D81C40C0C30 /* Pods-meow.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-meow/Pods-meow-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-meow/Pods-meow.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3935398B121A634A809B763B23999476 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E74EFF8E9690843826E6C4C31497E203 /* Pods-meow-meowUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-meow-meowUITests/Pods-meow-meowUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-meow-meowUITests/Pods-meow-meowUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		531AB9B51913EE274022D67EB63CB4E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		88AFBC60CF088D58E48F59B137018E00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8C96684E2AAC22B7B52DD8EB360B589 /* Pods-meowTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-meowTests/Pods-meowTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-meowTests/Pods-meowTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A06A0B8B8C2AC1F57A3C67ACD4FEC0B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C8DE0D0CEDC57F77B8188FBA4B918796 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A4D513691BBFDC2CE124BDB9D49ED06 /* Pods-meow-meowUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-meow-meowUITests/Pods-meow-meowUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-meow-meowUITests/Pods-meow-meowUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C9B4668529EA664EA6E3BB38AD49258E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D30B39BFB3975441EA2C4636B26E91C6 /* Pods-meow.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-meow/Pods-meow-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-meow/Pods-meow.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		44331D4154F5DED3558FC867BDE9835F /* Build configuration list for PBXNativeTarget "Pods-meowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88AFBC60CF088D58E48F59B137018E00 /* Debug */,
+				0E1542422E1DA5D9A8E7FA05C4872E92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06A0B8B8C2AC1F57A3C67ACD4FEC0B3 /* Debug */,
+				531AB9B51913EE274022D67EB63CB4E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86C7E84FF851571F0FE178B2A9086FB6 /* Build configuration list for PBXNativeTarget "Pods-meow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9B4668529EA664EA6E3BB38AD49258E /* Debug */,
+				203F5E262FA042896CE212990660943E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBAC591F6DEFA157CFC7F7A3B684C22C /* Build configuration list for PBXNativeTarget "Pods-meow-meowUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8DE0D0CEDC57F77B8188FBA4B918796 /* Debug */,
+				3935398B121A634A809B763B23999476 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

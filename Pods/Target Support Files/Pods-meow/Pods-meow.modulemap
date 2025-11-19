@@ -1,0 +1,6 @@
+framework module Pods_meow {
+  umbrella header "Pods-meow-umbrella.h"
+
+  export *
+  module * { export * }
+}

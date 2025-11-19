@@ -1,18 +1,16 @@
-//
-//  meowApp.swift
-//  meow
-//
-//  Created by Warintira Pureprasert on 29/10/2568 BE.
-//
-
 import SwiftUI
+import FirebaseCore
 
 @main
 struct meowApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
     }
 }
-kkkk
