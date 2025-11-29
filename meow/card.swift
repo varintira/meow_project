@@ -4,9 +4,7 @@ struct CatCardView: View {
     let cat: Cat
 
     var body: some View {
-        HStack(spacing: 16) { // ปรับ spacing ให้กระชับขึ้น (50 กว้างไป)
-            
-            // --- ส่วนรูปภาพ ---
+        HStack(spacing: 16) {
             AsyncImage(url:cat.img) { image in
                 image
                     .resizable()
@@ -14,7 +12,7 @@ struct CatCardView: View {
             } placeholder: {
                 Color.gray.opacity(0.3) // สีเทาตอนโหลด
             }
-            .frame(width: 80, height: 80)
+            .frame(width: 120, height: 120)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             
             // --- ส่วนข้อความ ---
@@ -34,7 +32,7 @@ struct CatCardView: View {
             
             Spacer() // ดันเนื้อหาไปชิดซ้าย
         }
-        .padding() // ระยะห่างภายในกรอบ
+        .padding(20) // ระยะห่างภายในกรอบ
         .frame(maxWidth: .infinity) // ขยายเต็มความกว้างจอ
         .background(Color.white)
         .cornerRadius(12)
