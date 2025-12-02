@@ -1,60 +1,86 @@
 import SwiftUI
 
 // ---------------------------------------------------------
-// 1. MainView (ตัวแม่สุด: มีหน้าที่สร้าง Tab Bar ข้างล่าง)
+// 1. MainView
 // ---------------------------------------------------------
 struct MainView: View {
-    // สร้าง DataStore ก้อนเดียวที่นี่ เพื่อส่งให้ทุกหน้าใช้ร่วมกัน
     @StateObject var dataStore = GetData()
 
     var body: some View {
         TabView {
-            // --- Tab 1: หน้าแรก (รายการแมว) ---
+            // --- Tab 1: Home ---
             HomeView(dataStore: dataStore)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
 
-            // --- Tab 2: หน้าถูกใจ (Favorites) ---
-            FavoritesView()
+            // --- Tab 2: Favorites ---
+            // (แก้จุดที่ 1) ส่ง dataStore ไปให้หน้านี้ด้วย
+            FavoritesView(dataStore: dataStore)
                 .tabItem {
                     Label("Favorite", systemImage: "heart.fill")
                 }
             
-            // --- Tab 3: โปรไฟล์ (Profile) ---
+            // --- Tab 3: Profile ---
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
         }
-        .tint(.orange) // (Optional) เปลี่ยนสีไอคอนที่เลือกเป็นสีส้ม
+        .tint(.orange)
     }
 }
 
 // ---------------------------------------------------------
-// 2. HomeView (หน้ารายการแมวเดิมของคุณ)
+// 2. HomeView
 // ---------------------------------------------------------
 struct HomeView: View {
-    @ObservedObject var dataStore: GetData // รับข้อมูลมาจากตัวแม่
+    @ObservedObject var dataStore: GetData
+    @State private var showAddCat = false
 
     var body: some View {
-        NavigationStack { // Nav Bar บน (Top Bar) อยู่ใน Tab นี้
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    ForEach(dataStore.cats) { cat in
-                        NavigationLink(destination: CatDetailView(cat: cat)) {
-                            CatCardView(cat: cat) //
-                                .padding(.horizontal)
+        NavigationStack {
+            ZStack(alignment: .bottomTrailing) {
+                
+                // --- List ---
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(dataStore.cats) { cat in
+                            // (แก้จุดที่ 2) ต้องส่ง dataStore ไปด้วย เพื่อให้หน้า Detail กดหัวใจได้
+                            NavigationLink(destination: CatDetailView(cat: cat, dataStore: dataStore)) {
+                                CatCardView(cat: cat)
+                                    .padding(.horizontal)
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
                     }
+                    .padding(.top, 20)
+                    .padding(.bottom, 80)
                 }
-                .padding(.top, 20)
-                .padding(.bottom, 80) // เว้นระยะล่างเผื่อติด Tab Bar
+                
+                // --- Floating Button ---
+                Button(action: {
+                    showAddCat = true
+                }) {
+                    Image(systemName: "plus")
+                        .font(.title.weight(.semibold))
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 4, x: 0, y: 4)
+                }
+                .padding(25)
             }
             .navigationTitle("Home")
+            
+            .sheet(isPresented: $showAddCat) {
+                AddCatView()
+                    .onDisappear {
+                        dataStore.loadCats()
+                    }
+            }
             .onAppear {
-                // โหลดข้อมูลถ้ายังไม่มี
                 if dataStore.cats.isEmpty {
                     dataStore.loadCats()
                 }
@@ -63,22 +89,11 @@ struct HomeView: View {
     }
 }
 
-// ---------------------------------------------------------
-// 3. หน้าอื่นๆ (สร้างไว้ทดสอบ Tab Bar)
-// ---------------------------------------------------------
-struct FavoritesView: View {
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Text("รายการที่กด Love ไว้ ❤️")
-                    .font(.title)
-                    .foregroundColor(.gray)
-            }
-            .navigationTitle("ถูกใจ")
-        }
-    }
-}
 
+
+// ---------------------------------------------------------
+// 4. ProfileView
+// ---------------------------------------------------------
 struct ProfileView: View {
     var body: some View {
         NavigationStack {
@@ -92,8 +107,6 @@ struct ProfileView: View {
     }
 }
 
-
-// Preview ดูผลลัพธ์
 #Preview {
     MainView()
 }
