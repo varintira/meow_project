@@ -3,7 +3,7 @@ import MapKit
 import CoreLocation
 
 struct LocationView: View {
-    let locationName: String // ชื่อสถานที่ที่รับมา (เช่น "หน้าเซเว่น ปากซอย 5")
+    let locationName: String // ชื่อสถานที่ (เช่น "สยามพารากอน")
     
     // เก็บพิกัดของแมว (จะได้จากการแปลงชื่อสถานที่)
     @State private var catCoordinate: CLLocationCoordinate2D?
@@ -19,7 +19,7 @@ struct LocationView: View {
                         .tint(.red)
                 }
                 
-                // แสดงจุดสีฟ้า (ตำแหน่งเรา) ด้วย
+                // แสดงจุดสีฟ้า (ตำแหน่งเรา)
                 UserAnnotation()
             }
             .mapControls {
@@ -31,26 +31,45 @@ struct LocationView: View {
                 geocodeAddress(address: locationName)
             }
             
-            // --- 2. ส่วนการ์ดแสดงชื่อสถานที่ (ด้านล่าง) ---
+            // --- 2. ส่วนการ์ดแสดงรายละเอียด (ด้านล่าง) ---
             VStack(spacing: 10) {
+                // ขีดเล็กๆ ด้านบนการ์ด (ให้ดูเหมือน Sheet)
                 Rectangle()
                     .frame(width: 40, height: 5)
                     .foregroundColor(.gray.opacity(0.5))
                     .cornerRadius(10)
                     .padding(.top, 10)
                 
-                HStack {
+                HStack(alignment: .top) {
                     Image(systemName: "mappin.circle.fill")
-                        .font(.title)
+                        .font(.largeTitle)
                         .foregroundColor(.red)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("พิกัดที่พบน้อง")
                             .font(.caption)
                             .foregroundColor(.gray)
+                        
                         Text(locationName)
                             .font(.headline)
                             .lineLimit(2)
+                        
+                        // --- ปุ่มนำทาง (กดแล้วเปิด Apple Maps) ---
+                        if let coordinate = catCoordinate {
+                            Button(action: {
+                                openMapForDirections(coordinate: coordinate, name: locationName)
+                            }) {
+                                Label("นำทางไปหาน้อง", systemImage: "car.fill")
+                                    .font(.caption.bold())
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 12)
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .padding(.top, 4)
+                        }
+                        // ---------------------------------------
                     }
                     Spacer()
                 }
@@ -66,7 +85,7 @@ struct LocationView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    // --- ฟังก์ชันแปลง ชื่อสถานที่ -> พิกัด (Geocoding) ---
+    // --- ฟังก์ชัน 1: แปลง ชื่อสถานที่ -> พิกัด (Geocoding) ---
     func geocodeAddress(address: String) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { placemarks, error in
@@ -87,8 +106,18 @@ struct LocationView: View {
             }
         }
     }
+    
+    // --- ฟังก์ชัน 2: เปิด Apple Maps เพื่อนำทาง ---
+    func openMapForDirections(coordinate: CLLocationCoordinate2D, name: String) {
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = name // ชื่อสถานที่จะไปโชว์ใน Apple Maps
+        
+        // สั่งเปิดโหมดขับรถ (Driving)
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+    }
 }
 
 #Preview {
-    LocationView(locationName: "อนุสาวรีย์ชัยสมรภูมิ")
+    LocationView(locationName: "สยามพารากอน")
 }
