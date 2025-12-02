@@ -28,11 +28,11 @@ struct Review: Identifiable {
     let userID: String
 }
 
-struct User: Identifiable {
-    let id: String
-    let email: String
-    let password: String
-}
+//struct User: Identifiable {
+//    let id: String
+//    let email: String
+//    let password: String
+//}
 
 // MARK: - getData Class
 class GetData: ObservableObject {
