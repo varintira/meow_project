@@ -1,5 +1,19 @@
 import SwiftUI
 
+
+struct ContentView: View {
+    @EnvironmentObject var authManager: AuthManager
+    
+    var body: some View {
+        if authManager.isAuthenticated {
+            MainView()
+        } else {
+            Login()  
+        }
+    }
+}
+
+
 // ---------------------------------------------------------
 // 1. MainView
 // ---------------------------------------------------------
@@ -91,22 +105,8 @@ struct HomeView: View {
 
 
 
-// ---------------------------------------------------------
-// 4. ProfileView
-// ---------------------------------------------------------
-struct ProfileView: View {
-    var body: some View {
-        NavigationStack {
-            VStack {
-                Text("หน้าข้อมูลส่วนตัว 👤")
-                    .font(.title)
-                    .foregroundColor(.gray)
-            }
-            .navigationTitle("โปรไฟล์")
-        }
-    }
-}
 
 #Preview {
-    MainView()
+    ContentView()
+        .environmentObject(AuthManager())  
 }

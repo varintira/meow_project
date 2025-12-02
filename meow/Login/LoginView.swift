@@ -1,13 +1,7 @@
-//
-//  LoginView.swift
-//  meow
-//
-//  Created by Warintira Pureprasert on 29/11/2568 BE.
-//
-
 import SwiftUI
 
 struct Login: View {
+    @EnvironmentObject var authManager: AuthManager  // เพิ่มบรรทัดนี้
     @State private var email = ""
     @State private var password = ""
     
@@ -37,14 +31,17 @@ struct Login: View {
                 .padding(.top, 12)
                 
                 //signin btn
-                
                 Button {
-                    print("Log user in...")
+                    // แก้ตรงนี้
+                    let success = authManager.login(email: email, password: password)
+                    if success {
+                        print("Login success!")
+                    }
                 } label: {
                     HStack {
                         Text("SIGN IN")
                             .fontWeight(.semibold)
-                        Image(systemName: "arrow-right")
+                        Image(systemName: "arrow.right")
                     }
                     .foregroundColor(.white)
                     .frame(width: UIScreen.main.bounds.width - 32, height: 48)
@@ -56,7 +53,6 @@ struct Login: View {
                 Spacer()
                 
                 //sign up btn
-                
                 NavigationLink {
                     Registration()
                         .navigationBarBackButtonHidden()
@@ -75,4 +71,5 @@ struct Login: View {
 
 #Preview {
     Login()
+        .environmentObject(AuthManager())
 }

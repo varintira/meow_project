@@ -1,10 +1,3 @@
-//
-//  Registration.swift
-//  meow
-//
-//  Created by Warintira Pureprasert on 1/12/2568 BE.
-//
-
 import SwiftUI
 
 struct Registration: View {
@@ -12,7 +5,10 @@ struct Registration: View {
     @State private var fullname = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    @State private var showError = false
+    @State private var errorMessage = ""
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var authManager: AuthManager
     
     var body: some View {
         VStack {
@@ -46,13 +42,21 @@ struct Registration: View {
             .padding(.horizontal)
             .padding(.top, 12)
             
+            // แสดง Error ถ้ามี
+            if showError {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.caption)
+                    .padding(.top, 8)
+            }
+            
             Button {
-                print("Sign user up...")
+                handleSignUp()  // แก้ตรงนี้
             } label: {
                 HStack {
                     Text("SIGN UP")
                         .fontWeight(.semibold)
-                    Image(systemName: "arrow-right")
+                    Image(systemName: "arrow.right")
                 }
                 .foregroundColor(.white)
                 .frame(width: UIScreen.main.bounds.width - 32, height: 48)
@@ -75,8 +79,46 @@ struct Registration: View {
             }
         }
     }
+    
+
+    private func handleSignUp() {
+        // ตรวจสอบข้อมูล
+        guard !email.isEmpty else {
+            showError = true
+            errorMessage = "Enter your Email"
+            return
+        }
+        
+        guard !fullname.isEmpty else {
+            showError = true
+            errorMessage = "Enter your name"
+            return
+        }
+        
+        guard password.count >= 6 else {
+            showError = true
+            errorMessage = "Password need atleast 6 characters"
+            return
+        }
+        
+        guard password == confirmPassword else {
+            showError = true
+            errorMessage = "Password not match"
+            return
+        }
+        
+        // สมัครสมาชิกสำเร็จ
+        print("Sign up success: \(email)")
+        
+        
+        // สมัครแล้ว Login เข้าเลย
+        authManager.isAuthenticated = true
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        
+    }
 }
 
 #Preview {
     Registration()
+        .environmentObject(AuthManager())
 }
