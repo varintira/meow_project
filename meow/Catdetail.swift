@@ -10,15 +10,12 @@ struct CatDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 
-                // --- 1. รูปภาพ Cover ---
-                AsyncImage(url: cat.img) { image in
-                    image.resizable().scaledToFill()
-                } placeholder: {
-                    Rectangle().fill(Color.gray.opacity(0.2))
-                }
-                .frame(height: 300)
-                .frame(maxWidth: .infinity)
-                .clipped()
+                // --- 1. รูปภาพ Cover (ใช้ตัวใหม่) ---
+                // แปลง URL เป็น String เพื่อส่งให้ SmartImageView
+                SmartImageView(imgString: "\(cat.img)")
+                    .frame(height: 300)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
                 
                 // --- 2. เนื้อหา ---
                 VStack(alignment: .leading, spacing: 16) {
@@ -70,7 +67,8 @@ struct CatDetailView: View {
                     
                     // รายละเอียดเพิ่มเติม
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("รายละเอียดเพิ่มเติม").font(.headline)
+                        Text("รายละเอียดเพิ่มเติม")
+                            .font(.headline)
                         Text(cat.description)
                             .font(.body)
                             .foregroundColor(.secondary)
@@ -79,7 +77,7 @@ struct CatDetailView: View {
                     
                     Spacer()
                     
-                    // --- ปุ่ม Location (ไปหน้าแผนที่) ---
+                    // --- 3. ปุ่ม Location (ไปหน้าแผนที่) ---
                     NavigationLink(destination: LocationView(locationName: cat.locationFound)) {
                         Text("ดูตำแหน่งที่พบ (Location)")
                             .font(.headline)
@@ -92,26 +90,55 @@ struct CatDetailView: View {
                     .padding(.top, 20)
                     
                 }
-                .padding(24) // ระยะห่างขอบซ้ายขวาของเนื้อหา
+                .padding(24)
             }
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitleDisplayMode(.inline)
         
-        // --- 3. ส่วน Toolbar (ปุ่มหัวใจ) ---
+        // --- 4. Toolbar (ปุ่มหัวใจ) ---
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
-                    // สั่งสลับสถานะ Fav
                     dataStore.toggleFavorite(cat)
                 }) {
-                    // เปลี่ยนรูปและสีตามสถานะ
                     Image(systemName: dataStore.isFavorite(cat) ? "heart.fill" : "heart")
                         .foregroundColor(dataStore.isFavorite(cat) ? .red : .gray)
                         .font(.title2)
                         .padding(8)
                         .background(Circle().fill(Color.white.opacity(0.6)))
                 }
+            }
+        }
+    }
+}
+
+struct SmartImageView: View {
+    let imgString: String
+    
+    var body: some View {
+        // เช็คว่าเป็นลิงก์เว็บ (http) หรือเป็นรหัสรูป (Base64)
+        if imgString.starts(with: "http") {
+            // กรณีเป็น URL (รูปตัวอย่าง)
+            AsyncImage(url: URL(string: imgString)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            } placeholder: {
+                Rectangle().fill(Color.gray.opacity(0.2))
+                    .overlay(ProgressView())
+            }
+        } else {
+            // กรณีเป็น Base64 (รูปที่อัปโหลดเอง)
+            if let data = Data(base64Encoded: imgString),
+               let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                // กรณีโหลดไม่ได้
+                Rectangle().fill(Color.gray.opacity(0.2))
+                    .overlay(Image(systemName: "photo").foregroundColor(.gray))
             }
         }
     }
