@@ -1,24 +1,57 @@
-import SwiftUI
+import Foundation
+import FirebaseAuth
+import FirebaseFirestore
 
+protocol AuthenticationFormProtocol {
+    var formIsValid: Bool { get }
+}
+
+@MainActor
 class AuthManager: ObservableObject {
-    @Published var isAuthenticated = false
+    @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
     
     init() {
-        self.isAuthenticated = UserDefaults.standard.bool(forKey: "isLoggedIn")
-    }
-    
-    func login(email: String, password: String) -> Bool {
-        // ตรวจสอบ Login (ตัวอย่าง)
-        if !email.isEmpty && !password.isEmpty {
-            isAuthenticated = true
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            return true
+        self.userSession = Auth.auth().currentUser
+        
+        Task {
+            await fetchUser()
         }
-        return false
     }
     
-    func logout() {
-        isAuthenticated = false
-        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+    func signIn (withEmail email: String, password: String) async throws {
+        do {
+            let result = try await Auth.auth().signIn(withEmail: email, password: password)
+            self.userSession = result.user
+            await fetchUser()
+        } catch {
+            print("DEBUG: Failed to log in with error\(error.localizedDescription)")
+        }
+    }
+    func createUser (withEmail email: String, password: String, fullname: String) async throws {
+        do {
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            self.userSession = result.user
+            let user = User(id: result.user.uid, fullname: fullname, email: email)
+            let encodeUser = try Firestore.Encoder().encode(user)
+            try await Firestore.firestore().collection("users").document(user.id).setData(encodeUser)
+            await fetchUser()
+        } catch {
+            print("DEBUG: Failed to create user with error \(error.localizedDescription)")
+        }
+    }
+    func signOut () {
+        do {
+            try Auth.auth().signOut() // sign out user on backend
+            self.userSession = nil // wipes out user and take back to login screen
+            self.currentUser = nil // wipes out current user data
+        } catch {
+            print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
+        }
+    }
+    func fetchUser () async {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+        self.currentUser = try? snapshot.data(as: User.self)
     }
 }

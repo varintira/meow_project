@@ -5,10 +5,8 @@ struct Registration: View {
     @State private var fullname = ""
     @State private var password = ""
     @State private var confirmPassword = ""
-    @State private var showError = false
-    @State private var errorMessage = ""
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var viewModel: AuthManager
     
     var body: some View {
         VStack {
@@ -34,24 +32,36 @@ struct Registration: View {
                           placeholder: "Enter your password",
                           isSecureField: true)
                 
-                inputView(text: $confirmPassword,
-                          title: "Confirm Password",
-                          placeholder: "Confirm your password",
-                          isSecureField: true)
+                ZStack (alignment: .trailing) {
+                    inputView(text: $confirmPassword,
+                              title: "Confirm Password",
+                              placeholder: "Confirm your password",
+                              isSecureField: true)
+                    
+                    if !password.isEmpty && !confirmPassword.isEmpty {
+                        if password == confirmPassword {
+                            Image(systemName: "checkmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(.systemGreen))
+                        } else {
+                            Image(systemName: "xmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color(.systemRed))
+                        }
+                    }
+                }
             }
             .padding(.horizontal)
             .padding(.top, 12)
             
-            // แสดง Error ถ้ามี
-            if showError {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .font(.caption)
-                    .padding(.top, 8)
-            }
-            
             Button {
-                handleSignUp()  // แก้ตรงนี้
+                Task {
+                    try await viewModel.createUser(withEmail: email,
+                                                   password: password,
+                                                   fullname: fullname)
+                }
             } label: {
                 HStack {
                     Text("SIGN UP")
@@ -62,6 +72,8 @@ struct Registration: View {
                 .frame(width: UIScreen.main.bounds.width - 32, height: 48)
             }
             .background(Color(.systemBlue))
+            .disabled(!formIsValid)
+            .opacity(formIsValid ? 1.0 : 0.5)
             .cornerRadius(10)
             .padding(.top, 24)
             
@@ -79,46 +91,22 @@ struct Registration: View {
             }
         }
     }
-    
+}
 
-    private func handleSignUp() {
-        // ตรวจสอบข้อมูล
-        guard !email.isEmpty else {
-            showError = true
-            errorMessage = "Enter your Email"
-            return
-        }
-        
-        guard !fullname.isEmpty else {
-            showError = true
-            errorMessage = "Enter your name"
-            return
-        }
-        
-        guard password.count >= 6 else {
-            showError = true
-            errorMessage = "Password need atleast 6 characters"
-            return
-        }
-        
-        guard password == confirmPassword else {
-            showError = true
-            errorMessage = "Password not match"
-            return
-        }
-        
-        // สมัครสมาชิกสำเร็จ
-        print("Sign up success: \(email)")
-        
-        
-        // สมัครแล้ว Login เข้าเลย
-        authManager.isAuthenticated = true
-        UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        
+//MARK: AuthenticationFormProtocol
+
+extension Registration:AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && confirmPassword == password
+        && !fullname.isEmpty
     }
 }
 
+
 #Preview {
     Registration()
-        .environmentObject(AuthManager())
 }

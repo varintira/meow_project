@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct Login: View {
-    @EnvironmentObject var authManager: AuthManager  // เพิ่มบรรทัดนี้
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthManager
     
     var body: some View {
         NavigationStack {
@@ -32,10 +32,8 @@ struct Login: View {
                 
                 //signin btn
                 Button {
-                    // แก้ตรงนี้
-                    let success = authManager.login(email: email, password: password)
-                    if success {
-                        print("Login success!")
+                    Task {
+                        try await viewModel.signIn(withEmail: email, password: password)
                     }
                 } label: {
                     HStack {
@@ -47,6 +45,8 @@ struct Login: View {
                     .frame(width: UIScreen.main.bounds.width - 32, height: 48)
                 }
                 .background(Color(.systemBlue))
+                .disabled(!formIsValid)
+                .opacity(formIsValid ? 1.0 : 0.5)
                 .cornerRadius(10)
                 .padding(.top, 24)
                 
@@ -66,6 +66,17 @@ struct Login: View {
                 }
             }
         }
+    }
+}
+
+//MARK: AuthenticationFormProtocol
+
+extension Login:AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
     }
 }
 
