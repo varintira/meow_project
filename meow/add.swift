@@ -10,6 +10,8 @@ struct AddCatView: View {
     @State private var gender: String = "Male"
     @State private var temperament: String = ""
     @State private var description: String = ""
+    @State private var selectedLatitude: Double?
+    @State private var selectedLongitude: Double?
     
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImage: UIImage? = nil
@@ -55,7 +57,11 @@ struct AddCatView: View {
                 Section(header: Text("ข้อมูลทั่วไป")) {
                     TextField("ชื่อน้องแมว", text: $name)
                     
-                    NavigationLink(destination: LocationPickerView(selectedLocationName: $locationFound)) {
+                    NavigationLink(destination: LocationPickerView(
+                        selectedLocationName: $locationFound,
+                        selectedLatitude: $selectedLatitude,
+                        selectedLongitude: $selectedLongitude
+                    )) {
                         HStack {
                             Text(locationFound.isEmpty ? "เลือกสถานที่..." : locationFound)
                             Spacer()
@@ -120,6 +126,8 @@ struct AddCatView: View {
         let newCatData: [String: Any] = [
             "name": name,
             "locationFound": locationFound,
+            "latitude": selectedLatitude ?? NSNull(),
+            "longitude": selectedLongitude ?? NSNull(),
             "gender": gender,
             "temperament": temperament,
             "description": description,

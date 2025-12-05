@@ -2,7 +2,7 @@ import Foundation
 import FirebaseFirestore
 import SwiftUI
 
-// MARK: - Models (เหลือแค่ Cat, Fav, Review พอ)
+// MARK: - Models
 struct Cat: Identifiable {
     let id: String
     let name: String
@@ -11,15 +11,26 @@ struct Cat: Identifiable {
     let description: String
     let temperament: String
     let createdBy: String
-    let img: String
+    let img: String // เป็น String เพื่อรองรับ Base64 และ URL
+    let latitude: Double?
+    let longitude: Double?
 }
 
 struct Fav: Identifiable {
     let id: String
     let catID: String
+    let userID: String // ระบุเจ้าของ Fav
+}
+
+struct Review: Identifiable {
+    let id: String
+    let comment: String
+    let catID: String
+    let rating: String
     let userID: String
 }
 
+// (หมายเหตุ: struct User ต้องมีอยู่ในไฟล์ User.swift แล้วนะครับ)
 
 // MARK: - getData Class
 class GetData: ObservableObject {
@@ -27,8 +38,10 @@ class GetData: ObservableObject {
     
     @Published var cats: [Cat] = []
     @Published var favorites: [Fav] = []
-    @Published var users: [User] = [] 
+    @Published var reviews: [Review] = []
+    @Published var users: [User] = [] // จะทำงานได้ต้องมีไฟล์ User.swift
 
+    // กรองแมวที่ User คนปัจจุบันกด Fav
     var favoriteCatsList: [Cat] {
         return cats.filter { cat in
             favorites.contains(where: { $0.catID == cat.id })
@@ -56,14 +69,16 @@ class GetData: ObservableObject {
                         description: data["description"] as? String ?? "",
                         temperament: data["temperament"] as? String ?? "",
                         createdBy: data["createdBy"] as? String ?? "",
-                        img: imgString
+                        img: imgString,
+                        latitude: data["latitude"] as? Double,
+                        longitude: data["longitude"] as? Double
                     )
                 } ?? []
             }
         }
     }
 
-    // MARK: - Load Favorites
+    // MARK: - Load Favorites (ต้องใส่ UserID)
     func loadFavorites(userID: String) {
         db.collection("favorites")
             .whereField("userID", isEqualTo: userID)
@@ -94,6 +109,7 @@ class GetData: ObservableObject {
 
     func toggleFavorite(_ cat: Cat, userID: String) {
         if let existingFav = favorites.first(where: { $0.catID == cat.id }) {
+            // ลบออก
             db.collection("favorites").document(existingFav.id).delete() { err in
                 if let err = err { print("Error removing fav: \(err)") }
             }
@@ -101,6 +117,7 @@ class GetData: ObservableObject {
                 favorites.remove(at: index)
             }
         } else {
+            // เพิ่มใหม่
             let newRef = db.collection("favorites").document()
             let data: [String: Any] = [
                 "catID": cat.id,
@@ -114,14 +131,16 @@ class GetData: ObservableObject {
         }
     }
 
-    // MARK: - Load Reviews
+    // MARK: - Load Reviews & Users
     func loadReviews() {
-        // ... (เหมือนเดิม) ...
+        // ... code เดิม ...
     }
 
     // MARK: - Load All Data
     func loadAllData() {
         loadCats()
-        // favorite ต้องรอ userID จากหน้า View เลยไม่โหลดตรงนี้
+        
+        // ⚠️ แก้ไขตรงนี้: ลบ loadFavorites() ออก เพราะมันต้องการ userID
+        // เราย้ายไปโหลดในหน้า FavoritesView แทนแล้ว
     }
 }

@@ -62,7 +62,7 @@ struct CatDetailView: View {
                     Spacer()
                     
                     // --- 3. ปุ่ม Location ---
-                    NavigationLink(destination: LocationView(locationName: cat.locationFound)) {
+                    NavigationLink(destination: LocationView(locationName: cat.locationFound, latitude: cat.latitude, longitude: cat.longitude)) {
                         Text("ดูตำแหน่งที่พบ (Location)")
                             .font(.headline)
                             .foregroundColor(.white)

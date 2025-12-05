@@ -11,3 +11,6 @@ Packages/
 # CocoaPods (ถ้ามี)
 Pods/
 Podfile.lock
+.DS_Store
+meow.xcodeproj/project.xcworkspace/xcuserdata/paponsaktemsirisak.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate

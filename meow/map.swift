@@ -3,37 +3,47 @@ import MapKit
 import CoreLocation
 
 struct LocationView: View {
-    let locationName: String // ชื่อสถานที่ (เช่น "สยามพารากอน")
+    let locationName: String // รับแค่ชื่อสถานที่ (เช่น "สยามพารากอน") พอ ไม่ต้องเอาพิกัด
+    let latitude: Double?
+    let longitude: Double?
     
-    // เก็บพิกัดของแมว (จะได้จากการแปลงชื่อสถานที่)
-    @State private var catCoordinate: CLLocationCoordinate2D?
+    // ตัวแปรสำหรับคุมแผนที่
     @State private var position = MapCameraPosition.automatic
+    @State private var markerCoordinate: CLLocationCoordinate2D? // เก็บพิกัดหมุดแดง
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // --- 1. ส่วนแผนที่ ---
+            // --- 1. แผนที่ ---
             Map(position: $position) {
-                // ถ้าแปลงชื่อเป็นพิกัดได้ ให้ปักหมุดสีแดงตรงจุดนั้น
-                if let coordinate = catCoordinate {
+                // ถ้าแปลงชื่อเป็นพิกัดสำเร็จ ให้ปักหมุดสีแดง
+                if let coordinate = markerCoordinate {
                     Marker(locationName, coordinate: coordinate)
                         .tint(.red)
                 }
                 
-                // แสดงจุดสีฟ้า (ตำแหน่งเรา)
+                // แสดงจุดสีฟ้า (ตัวเรา)
                 UserAnnotation()
             }
             .mapControls {
                 MapUserLocationButton()
                 MapCompass()
             }
-            // เมื่อหน้าจอโผล่ขึ้นมา ให้เริ่มแปลงชื่อเป็นพิกัดทันที
+            // พอหน้าจอเปิดปุ๊บ ให้เริ่มแปลงชื่อเป็นพิกัดทันที
             .onAppear {
-                geocodeAddress(address: locationName)
+                if let lat = latitude, let long = longitude {
+                    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                    self.markerCoordinate = coordinate
+                    self.position = .region(MKCoordinateRegion(
+                        center: coordinate,
+                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                    ))
+                } else {
+                    findLocationFromName(name: locationName)
+                }
             }
             
-            // --- 2. ส่วนการ์ดแสดงรายละเอียด (ด้านล่าง) ---
+            // --- 2. การ์ดด้านล่าง ---
             VStack(spacing: 10) {
-                // ขีดเล็กๆ ด้านบนการ์ด (ให้ดูเหมือน Sheet)
                 Rectangle()
                     .frame(width: 40, height: 5)
                     .foregroundColor(.gray.opacity(0.5))
@@ -49,15 +59,14 @@ struct LocationView: View {
                         Text("พิกัดที่พบน้อง")
                             .font(.caption)
                             .foregroundColor(.gray)
-                        
                         Text(locationName)
                             .font(.headline)
                             .lineLimit(2)
                         
-                        // --- ปุ่มนำทาง (กดแล้วเปิด Apple Maps) ---
-                        if let coordinate = catCoordinate {
+                        // ปุ่มกดนำทาง
+                        if let coordinate = markerCoordinate {
                             Button(action: {
-                                openMapForDirections(coordinate: coordinate, name: locationName)
+                                openMaps(coordinate: coordinate, name: locationName)
                             }) {
                                 Label("นำทางไปหาน้อง", systemImage: "car.fill")
                                     .font(.caption.bold())
@@ -69,7 +78,6 @@ struct LocationView: View {
                             }
                             .padding(.top, 4)
                         }
-                        // ---------------------------------------
                     }
                     Spacer()
                 }
@@ -79,45 +87,43 @@ struct LocationView: View {
             .background(Color.white)
             .cornerRadius(20)
             .shadow(radius: 10)
-            .padding() // เว้นระยะขอบจอ
+            .padding()
         }
         .navigationTitle("แผนที่")
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    // --- ฟังก์ชัน 1: แปลง ชื่อสถานที่ -> พิกัด (Geocoding) ---
-    func geocodeAddress(address: String) {
+    // --- ฟังก์ชันแปลง ชื่อ -> พิกัด (ท่าไม้ตาย) ---
+    func findLocationFromName(name: String) {
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address) { placemarks, error in
+        geocoder.geocodeAddressString(name) { placemarks, error in
             if let placemark = placemarks?.first, let location = placemark.location {
                 // เจอพิกัดแล้ว!
                 let coordinate = location.coordinate
-                self.catCoordinate = coordinate
+                self.markerCoordinate = coordinate
                 
-                // สั่งกล้องให้ซูมไปหาพิกัดนั้น
+                // สั่งกล้องซูมไปหาเลย
                 withAnimation {
                     self.position = .region(MKCoordinateRegion(
                         center: coordinate,
-                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005) // ซูมเข้าไปใกล้ๆ
+                        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                     ))
                 }
             } else {
-                print("หาพิกัดไม่เจอ: \(error?.localizedDescription ?? "Unknown error")")
+                print("หาไม่เจอ: \(error?.localizedDescription ?? "Unknown")")
             }
         }
     }
     
-    // --- ฟังก์ชัน 2: เปิด Apple Maps เพื่อนำทาง ---
-    func openMapForDirections(coordinate: CLLocationCoordinate2D, name: String) {
+    // ฟังก์ชันเปิด Apple Maps
+    func openMaps(coordinate: CLLocationCoordinate2D, name: String) {
         let placemark = MKPlacemark(coordinate: coordinate)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = name // ชื่อสถานที่จะไปโชว์ใน Apple Maps
-        
-        // สั่งเปิดโหมดขับรถ (Driving)
+        mapItem.name = name
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
 }
 
 #Preview {
-    LocationView(locationName: "สยามพารากอน")
+    LocationView(locationName: "Central World", latitude: nil, longitude: nil)
 }

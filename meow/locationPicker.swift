@@ -33,11 +33,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 struct LocationPickerView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var selectedLocationName: String
+    @Binding var selectedLatitude: Double?
+    @Binding var selectedLongitude: Double?
     
     // เรียกใช้ Class ด้านบน
     @StateObject private var locationManager = LocationManager()
     
-    // เริ่มต้นให้ซูมหา User เลย
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
     @State private var placeName: String = "กำลังระบุตำแหน่ง..."
@@ -53,9 +54,14 @@ struct LocationPickerView: View {
                 MapCompass()
             }
             .onMapCameraChange(frequency: .onEnd) { context in
-                // เลื่อนเสร็จ -> แปลงพิกัดเป็นชื่อ
-                getAddressFromLatLon(context.camera.centerCoordinate)
+                // เลื่อนเสร็จ -> เก็บพิกัดและแปลงชื่อ
+                let coordinate = context.camera.centerCoordinate
+                selectedLatitude = coordinate.latitude
+                selectedLongitude = coordinate.longitude
+                getAddressFromLatLon(coordinate)
             }
+            
+
             
             // 2. หมุดแดงตรงกลาง
             Image(systemName: "mappin")
@@ -73,9 +79,12 @@ struct LocationPickerView: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     
-                    Text(placeName)
+                    TextField("ระบุชื่อสถานที่", text: $placeName)
                         .font(.headline)
                         .multilineTextAlignment(.center)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
                     
@@ -127,6 +136,7 @@ struct LocationPickerView: View {
                     self.placeName = addressParts.joined(separator: ", ")
                 }
             }
+            }
         }
     }
-}
+
