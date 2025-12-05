@@ -93,7 +93,7 @@ struct LocationView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    // --- ฟังก์ชันแปลง ชื่อ -> พิกัด (ท่าไม้ตาย) ---
+    
     func findLocationFromName(name: String) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(name) { placemarks, error in
