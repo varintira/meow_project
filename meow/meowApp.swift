@@ -7,7 +7,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     
-    FirebaseApp.configure() // ✅ เก็บอันนี้ไว้ (ให้มันรันที่นี่ที่เดียว)
+    FirebaseApp.configure()
 
     return true
   }
@@ -15,15 +15,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct YourApp: App {
-  // เชื่อมกับ AppDelegate ด้านบน
+  
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var viewModel = AuthManager()
     
-    // ❌ ลบ init() ตรงนี้ทิ้งไปเลยครับ เพราะมันซ้ำกับข้างบน
-    // init() {
-    //     FirebaseApp.configure()
-    // }
-
+  
   var body: some Scene {
     WindowGroup {
       ContentView()

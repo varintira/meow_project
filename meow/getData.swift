@@ -12,7 +12,7 @@ struct Cat: Identifiable {
     let temperament: String
     let createdBy: String
     
-    // (แก้ไข 1) เปลี่ยนจาก URL เป็น String เพื่อรองรับ Base64
+   
     let img: String
 }
 
@@ -29,11 +29,6 @@ struct Review: Identifiable {
     let userID: String
 }
 
-//struct User: Identifiable {
-//    let id: String
-//    let email: String
-//    let password: String
-//}
 
 // MARK: - getData Class
 class GetData: ObservableObject {

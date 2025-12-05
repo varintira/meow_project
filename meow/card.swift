@@ -5,20 +5,15 @@ struct CatCardView: View {
 
     var body: some View {
         HStack(spacing: 16) {
-            // ------------------------------------------------------------
-            // (จุดที่แก้ไข) เปลี่ยนจาก AsyncImage เป็น SmartImageView
-            // ------------------------------------------------------------
-            // หมายเหตุ: cat.img ต้องเป็น String นะครับ (ตามที่แก้ใน Model)
+          
             SmartImageView(imgString: cat.img)
                 .frame(width: 120, height: 120)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-            // ------------------------------------------------------------
-            
-            // --- ส่วนข้อความ (เหมือนเดิม) ---
             VStack(alignment: .leading, spacing: 6) {
                 Text(cat.name)
                     .font(.headline)
                     .lineLimit(1)
+                    .foregroundColor(.black)
                 
                 Text("Gender: \(cat.gender)")
                     .font(.subheadline)

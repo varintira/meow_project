@@ -9,7 +9,7 @@ struct Login: View {
         NavigationStack {
             VStack {
                 //image
-                Image("Roblox_Logo_2025")
+                Image("MeowApp")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 100, height: 120)

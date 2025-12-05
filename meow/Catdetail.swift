@@ -10,8 +10,6 @@ struct CatDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 
-                // --- 1. รูปภาพ Cover (ใช้ตัวใหม่) ---
-                // แปลง URL เป็น String เพื่อส่งให้ SmartImageView
                 SmartImageView(imgString: "\(cat.img)")
                     .frame(height: 300)
                     .frame(maxWidth: .infinity)

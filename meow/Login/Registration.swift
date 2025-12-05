@@ -10,7 +10,7 @@ struct Registration: View {
     
     var body: some View {
         VStack {
-            Image("Roblox_Logo_2025")
+            Image("MeowApp")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 100, height: 120)
@@ -29,7 +29,7 @@ struct Registration: View {
                 
                 inputView(text: $password,
                           title: "Password",
-                          placeholder: "Enter your password",
+                          placeholder: "Enter your password (at least 6 characters)",
                           isSecureField: true)
                 
                 ZStack (alignment: .trailing) {
