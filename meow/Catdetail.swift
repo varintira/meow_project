@@ -7,6 +7,10 @@ struct CatDetailView: View {
     // 1. (เพิ่ม) เรียก AuthManager มาเพื่อเอา User ID ของคนปัจจุบัน
     @EnvironmentObject var authManager: AuthManager
     
+    // Admin Delete Alert
+    @State private var showingDeleteAlert = false
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
@@ -73,6 +77,33 @@ struct CatDetailView: View {
                     }
                     .padding(.top, 20)
                     
+                    // --- 4. ปุ่ม Delete (Admin Only) ---
+                    if let user = authManager.currentUser, user.isAdmin {
+                        Button(action: {
+                            showingDeleteAlert = true
+                        }) {
+                            Text("ลบข้อมูลแมว (Admin Only)")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.red)
+                                .cornerRadius(12)
+                        }
+                        .padding(.top, 10)
+                        .alert(isPresented: $showingDeleteAlert) {
+                            Alert(
+                                title: Text("ยืนยันการลบ"),
+                                message: Text("คุณต้องการลบข้อมูลแมวนี้ใช่หรือไม่? การกระทำนี้ไม่สามารถย้อนกลับได้"),
+                                primaryButton: .destructive(Text("ลบ")) {
+                                    dataStore.deleteCat(cat)
+                                    presentationMode.wrappedValue.dismiss()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                    }
+                    
                 }
                 .padding(24)
             }
@@ -121,3 +152,5 @@ struct SmartImageView: View {
         }
     }
 }
+
+

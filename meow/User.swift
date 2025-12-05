@@ -20,6 +20,10 @@ struct User: Identifiable, Codable {
         }
         return ""
     }
+    
+    var isAdmin: Bool {
+        return email == "adminCat@gmail.com"
+    }
 }
 
 extension User {

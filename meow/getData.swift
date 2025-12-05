@@ -130,6 +130,22 @@ class GetData: ObservableObject {
             favorites.append(newFav)
         }
     }
+    
+    // MARK: - Admin Functions
+    func deleteCat(_ cat: Cat) {
+        db.collection("cats").document(cat.id).delete() { err in
+            if let err = err {
+                print("Error removing cat: \(err)")
+            } else {
+                print("Cat successfully deleted!")
+                DispatchQueue.main.async {
+                    if let index = self.cats.firstIndex(where: { $0.id == cat.id }) {
+                        self.cats.remove(at: index)
+                    }
+                }
+            }
+        }
+    }
 
     // MARK: - Load Reviews & Users
     func loadReviews() {
