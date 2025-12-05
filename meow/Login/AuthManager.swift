@@ -19,15 +19,19 @@ class AuthManager: ObservableObject {
         }
     }
     
+    // MARK: - แก้ฟังก์ชัน signIn (สำคัญ)
     func signIn (withEmail email: String, password: String) async throws {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
             await fetchUser()
         } catch {
-            print("DEBUG: Failed to log in with error\(error.localizedDescription)")
+            print("DEBUG: Failed to log in with error \(error.localizedDescription)")
+            throw error // <--- เพิ่มบรรทัดนี้ครับ! เพื่อโยน Error กลับไปให้หน้า Login
         }
     }
+    
+    // MARK: - แก้ฟังก์ชัน createUser ด้วย (เผื่อตอนสมัครสมาชิก)
     func createUser (withEmail email: String, password: String, fullname: String) async throws {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
@@ -38,17 +42,20 @@ class AuthManager: ObservableObject {
             await fetchUser()
         } catch {
             print("DEBUG: Failed to create user with error \(error.localizedDescription)")
+            throw error // <--- เพิ่มบรรทัดนี้เช่นกันครับ
         }
     }
+    
     func signOut () {
         do {
-            try Auth.auth().signOut() // sign out user on backend
-            self.userSession = nil // wipes out user and take back to login screen
-            self.currentUser = nil // wipes out current user data
+            try Auth.auth().signOut()
+            self.userSession = nil
+            self.currentUser = nil
         } catch {
             print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
         }
     }
+    
     func fetchUser () async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
