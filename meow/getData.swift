@@ -2,7 +2,7 @@ import Foundation
 import FirebaseFirestore
 import SwiftUI
 
-// MARK: - Models
+// MARK: - Models (เหลือแค่ Cat, Fav, Review พอ)
 struct Cat: Identifiable {
     let id: String
     let name: String
@@ -11,21 +11,12 @@ struct Cat: Identifiable {
     let description: String
     let temperament: String
     let createdBy: String
-    
-   
     let img: String
 }
 
 struct Fav: Identifiable {
     let id: String
     let catID: String
-}
-
-struct Review: Identifiable {
-    let id: String
-    let comment: String
-    let catID: String
-    let rating: String
     let userID: String
 }
 
@@ -36,8 +27,7 @@ class GetData: ObservableObject {
     
     @Published var cats: [Cat] = []
     @Published var favorites: [Fav] = []
-    @Published var reviews: [Review] = []
-//    @Published var users: [User] = []
+    @Published var users: [User] = [] 
 
     var favoriteCatsList: [Cat] {
         return cats.filter { cat in
@@ -56,8 +46,6 @@ class GetData: ObservableObject {
             DispatchQueue.main.async {
                 self.cats = snapshot?.documents.compactMap { doc in
                     let data = doc.data()
-                    
-                    // (แก้ไข 2) รับข้อมูลมาเป็น String ตรงๆ (ไม่ต้องแปลงเป็น URL)
                     let imgString = data["img"] as? String ?? ""
                     
                     return Cat(
@@ -68,16 +56,19 @@ class GetData: ObservableObject {
                         description: data["description"] as? String ?? "",
                         temperament: data["temperament"] as? String ?? "",
                         createdBy: data["createdBy"] as? String ?? "",
-                        img: imgString // ส่ง String ไปเลย
+                        img: imgString
                     )
                 } ?? []
             }
         }
     }
 
-    // MARK: - Load Favorites (เหมือนเดิม)
-    func loadFavorites() {
-        db.collection("favorites").getDocuments { snapshot, error in
+    // MARK: - Load Favorites
+    func loadFavorites(userID: String) {
+        db.collection("favorites")
+            .whereField("userID", isEqualTo: userID)
+            .getDocuments { snapshot, error in
+                
             if let error = error {
                 print("❌ Load Favorites error:", error)
                 return
@@ -88,19 +79,20 @@ class GetData: ObservableObject {
                     let data = doc.data()
                     return Fav(
                         id: doc.documentID,
-                        catID: data["catID"] as? String ?? ""
+                        catID: data["catID"] as? String ?? "",
+                        userID: data["userID"] as? String ?? ""
                     )
                 } ?? []
             }
         }
     }
     
-    // MARK: - Favorite Logic (เหมือนเดิม)
+    // MARK: - Favorite Logic
     func isFavorite(_ cat: Cat) -> Bool {
         return favorites.contains(where: { $0.catID == cat.id })
     }
 
-    func toggleFavorite(_ cat: Cat) {
+    func toggleFavorite(_ cat: Cat, userID: String) {
         if let existingFav = favorites.first(where: { $0.catID == cat.id }) {
             db.collection("favorites").document(existingFav.id).delete() { err in
                 if let err = err { print("Error removing fav: \(err)") }
@@ -110,27 +102,26 @@ class GetData: ObservableObject {
             }
         } else {
             let newRef = db.collection("favorites").document()
-            let data: [String: Any] = ["catID": cat.id]
+            let data: [String: Any] = [
+                "catID": cat.id,
+                "userID": userID
+            ]
             newRef.setData(data) { err in
                 if let err = err { print("Error adding fav: \(err)") }
             }
-            let newFav = Fav(id: newRef.documentID, catID: cat.id)
+            let newFav = Fav(id: newRef.documentID, catID: cat.id, userID: userID)
             favorites.append(newFav)
         }
     }
 
-    // MARK: - Load Reviews & Users
+    // MARK: - Load Reviews
     func loadReviews() {
-        // ... (เหมือนเดิม) ...
-    }
-
-    func loadUsers() {
         // ... (เหมือนเดิม) ...
     }
 
     // MARK: - Load All Data
     func loadAllData() {
         loadCats()
-        loadFavorites()
+        // favorite ต้องรอ userID จากหน้า View เลยไม่โหลดตรงนี้
     }
 }
