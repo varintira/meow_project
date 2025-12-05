@@ -2,15 +2,17 @@ import SwiftUI
 
 struct CatDetailView: View {
     let cat: Cat
-    
-    // รับ dataStore เข้ามาเพื่อใช้งานปุ่มหัวใจ
     @ObservedObject var dataStore: GetData
+    
+    // 1. (เพิ่ม) เรียก AuthManager มาเพื่อเอา User ID ของคนปัจจุบัน
+    @EnvironmentObject var authManager: AuthManager
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 
-                SmartImageView(imgString: "\(cat.img)")
+                // --- 1. รูปภาพ Cover ---
+                SmartImageView(imgString: cat.img)
                     .frame(height: 300)
                     .frame(maxWidth: .infinity)
                     .clipped()
@@ -18,13 +20,9 @@ struct CatDetailView: View {
                 // --- 2. เนื้อหา ---
                 VStack(alignment: .leading, spacing: 16) {
                     
-                    // ชื่อและเพศ
                     HStack {
-                        Text(cat.name)
-                            .font(.system(size: 32, weight: .bold))
-                        
+                        Text(cat.name).font(.system(size: 32, weight: .bold))
                         Spacer()
-                        
                         Text(cat.gender)
                             .font(.subheadline).fontWeight(.semibold)
                             .padding(.horizontal, 12).padding(.vertical, 6)
@@ -35,38 +33,26 @@ struct CatDetailView: View {
                     
                     Divider()
                     
-                    // ข้อมูลสถานที่พบ
                     HStack(alignment: .top) {
-                        Image(systemName: "mappin.and.ellipse")
-                            .foregroundColor(.red)
-                            .font(.title3)
+                        Image(systemName: "mappin.and.ellipse").foregroundColor(.red).font(.title3)
                         VStack(alignment: .leading) {
-                            Text("สถานที่พบ")
-                                .font(.caption).foregroundColor(.gray)
-                            Text(cat.locationFound)
-                                .font(.body)
+                            Text("สถานที่พบ").font(.caption).foregroundColor(.gray)
+                            Text(cat.locationFound).font(.body)
                         }
                     }
                     
-                    // ข้อมูลนิสัย
                     HStack(alignment: .top) {
-                        Image(systemName: "face.smiling")
-                            .foregroundColor(.orange)
-                            .font(.title3)
+                        Image(systemName: "face.smiling").foregroundColor(.orange).font(.title3)
                         VStack(alignment: .leading) {
-                            Text("นิสัยน้อง")
-                                .font(.caption).foregroundColor(.gray)
-                            Text(cat.temperament)
-                                .font(.body)
+                            Text("นิสัยน้อง").font(.caption).foregroundColor(.gray)
+                            Text(cat.temperament).font(.body)
                         }
                     }
                     
                     Divider()
                     
-                    // รายละเอียดเพิ่มเติม
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("รายละเอียดเพิ่มเติม")
-                            .font(.headline)
+                        Text("รายละเอียดเพิ่มเติม").font(.headline)
                         Text(cat.description)
                             .font(.body)
                             .foregroundColor(.secondary)
@@ -75,7 +61,7 @@ struct CatDetailView: View {
                     
                     Spacer()
                     
-                    // --- 3. ปุ่ม Location (ไปหน้าแผนที่) ---
+                    // --- 3. ปุ่ม Location ---
                     NavigationLink(destination: LocationView(locationName: cat.locationFound)) {
                         Text("ดูตำแหน่งที่พบ (Location)")
                             .font(.headline)
@@ -98,7 +84,10 @@ struct CatDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
-                    dataStore.toggleFavorite(cat)
+                    // 2. (แก้ไข) ส่ง UserID เข้าไปตอนกดปุ่ม
+                    if let userID = authManager.userSession?.uid {
+                        dataStore.toggleFavorite(cat, userID: userID)
+                    }
                 }) {
                     Image(systemName: dataStore.isFavorite(cat) ? "heart.fill" : "heart")
                         .foregroundColor(dataStore.isFavorite(cat) ? .red : .gray)
@@ -111,30 +100,21 @@ struct CatDetailView: View {
     }
 }
 
+// (ส่วน SmartImageView คงเดิมไว้ได้เลยครับ ถูกต้องแล้ว)
 struct SmartImageView: View {
     let imgString: String
     
     var body: some View {
-        // เช็คว่าเป็นลิงก์เว็บ (http) หรือเป็นรหัสรูป (Base64)
         if imgString.starts(with: "http") {
-            // กรณีเป็น URL (รูปตัวอย่าง)
             AsyncImage(url: URL(string: imgString)) { image in
-                image
-                    .resizable()
-                    .scaledToFill()
+                image.resizable().scaledToFill()
             } placeholder: {
-                Rectangle().fill(Color.gray.opacity(0.2))
-                    .overlay(ProgressView())
+                Rectangle().fill(Color.gray.opacity(0.2)).overlay(ProgressView())
             }
         } else {
-            // กรณีเป็น Base64 (รูปที่อัปโหลดเอง)
-            if let data = Data(base64Encoded: imgString),
-               let uiImage = UIImage(data: data) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .scaledToFill()
+            if let data = Data(base64Encoded: imgString), let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage).resizable().scaledToFill()
             } else {
-                // กรณีโหลดไม่ได้
                 Rectangle().fill(Color.gray.opacity(0.2))
                     .overlay(Image(systemName: "photo").foregroundColor(.gray))
             }

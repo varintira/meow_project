@@ -1,16 +1,16 @@
 import SwiftUI
+import FirebaseAuth // (1) อย่าลืม import นี้
 
 struct FavoritesView: View {
     @ObservedObject var dataStore: GetData
     
-    // ✅ เพิ่มบรรทัดนี้: ดึงค่า userID จากที่บันทึกไว้ในเครื่อง
-    @AppStorage("current_user_id") var currentUser: String = ""
+    // (2) เรียก AuthManager เพื่อเอา User ID
+    @EnvironmentObject var authManager: AuthManager
 
     var body: some View {
         NavigationStack {
             Group {
                 if dataStore.favoriteCatsList.isEmpty {
-                    // ... (โค้ดส่วนเดิม) ...
                     VStack {
                         Image(systemName: "heart.slash")
                             .font(.largeTitle)
@@ -20,7 +20,6 @@ struct FavoritesView: View {
                             .padding(.top, 5)
                     }
                 } else {
-                    // ... (โค้ดส่วนเดิม) ...
                     ScrollView {
                         LazyVStack(spacing: 16) {
                             ForEach(dataStore.favoriteCatsList) { cat in
@@ -37,9 +36,9 @@ struct FavoritesView: View {
             }
             .navigationTitle("รายการโปรด ❤️")
             .onAppear {
-                // ✅ ตรวจสอบว่ามี user หรือไม่ก่อนโหลด
-                if !currentUser.isEmpty {
-                    dataStore.loadFavorites(userID: currentUser)
+                // (3) ดึง UID ของคนที่ล็อกอินอยู่ แล้วสั่งโหลด
+                if let userID = authManager.userSession?.uid {
+                    dataStore.loadFavorites(userID: userID)
                 }
             }
         }
