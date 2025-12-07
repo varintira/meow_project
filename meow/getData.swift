@@ -22,13 +22,7 @@ struct Fav: Identifiable {
     let userID: String // ระบุเจ้าของ Fav
 }
 
-struct Review: Identifiable {
-    let id: String
-    let comment: String
-    let catID: String
-    let rating: String
-    let userID: String
-}
+
 
 // (หมายเหตุ: struct User ต้องมีอยู่ในไฟล์ User.swift แล้วนะครับ)
 
@@ -38,7 +32,6 @@ class GetData: ObservableObject {
     
     @Published var cats: [Cat] = []
     @Published var favorites: [Fav] = []
-    @Published var reviews: [Review] = []
     @Published var users: [User] = [] // จะทำงานได้ต้องมีไฟล์ User.swift
 
     // กรองแมวที่ User คนปัจจุบันกด Fav
