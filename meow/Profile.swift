@@ -4,8 +4,8 @@ struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthManager
     
     var body: some View {
-        NavigationStack {  // ⭐ เพิ่ม NavigationStack
-            Group {  // ⭐ ใช้ Group แทน if-else
+        NavigationStack {
+            Group {
                 if let user = viewModel.currentUser {
                     List {
                         Section {
@@ -26,7 +26,7 @@ struct ProfileView: View {
                                     
                                     Text(user.email)
                                         .font(.footnote)
-                                        .foregroundColor(.gray)  // ⭐ แก้จาก accentColor
+                                        .foregroundColor(.gray)
                                 }
                             }
                         }
@@ -56,7 +56,7 @@ struct ProfileView: View {
                             
                         }
                     }
-                    .navigationTitle("Profile")  // ⭐ เพิ่ม title
+                    .navigationTitle("Profile")  
                 }
             }
         }

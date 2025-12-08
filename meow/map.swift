@@ -15,7 +15,7 @@ struct LocationView: View {
         ZStack(alignment: .bottom) {
             // --- 1. แผนที่ ---
             Map(position: $position) {
-                // ถ้าแปลงชื่อเป็นพิกัดสำเร็จ ให้ปักหมุดสีแดง
+                
                 if let coordinate = markerCoordinate {
                     Marker(locationName, coordinate: coordinate)
                         .tint(.red)

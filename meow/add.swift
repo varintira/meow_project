@@ -17,9 +17,11 @@ struct AddCatView: View {
     @State private var selectedImage: UIImage? = nil
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: AuthManager // เพิ่ม EnvironmentObject
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var isLoading = false
+    @State private var phone: String = "" // เพิ่มตัวแปรเก็บเบอร์โทร
 
     var body: some View {
         NavigationStack {
@@ -78,6 +80,8 @@ struct AddCatView: View {
                 
                 Section(header: Text("รายละเอียด")) {
                     TextField("นิสัย", text: $temperament)
+                    TextField("เบอร์โทรติดต่อ", text: $phone) // เพิ่ม TextField เบอร์โทร
+                        .keyboardType(.phonePad)
                     TextEditor(text: $description).frame(height: 100)
                 }
                 
@@ -112,9 +116,7 @@ struct AddCatView: View {
         
         var imageString = "https://placekitten.com/300/300" // ค่า Default
         
-        // ถ้ามีรูป -> แปลงเป็น Base64 String
         if let image = selectedImage {
-            // สำคัญ! ต้องบีบอัดรูปให้เล็กที่สุด (0.1) ไม่งั้นเกิน 1MB แล้ว Firestore จะ Error
             if let imageData = image.jpegData(compressionQuality: 0.1) {
                 let base64 = imageData.base64EncodedString()
                 imageString = base64
@@ -131,11 +133,11 @@ struct AddCatView: View {
             "gender": gender,
             "temperament": temperament,
             "description": description,
-            "img": imageString, // เก็บเป็นข้อความยาวๆ แทน URL
-            "createdBy": "GuestUser",
+            "img": imageString,
+            "createdBy": viewModel.currentUser?.fullname ?? "GuestUser", // ใช้ชื่อ User ปัจจุบัน
+            "phone": phone, // บันทึกเบอร์โทร
             "createdAt": FieldValue.serverTimestamp()
         ]
-        
         db.collection("cats").addDocument(data: newCatData) { error in
             isLoading = false
             if let error = error {

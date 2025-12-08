@@ -41,9 +41,7 @@ struct Login: View {
                         do {
                             try await viewModel.signIn(withEmail: email, password: password)
                         } catch {
-                            // ถ้า Login พลาด ให้เด้ง Alert
                             alertMessage = "อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง"
-                            // หรือถ้าอยากแสดง Error จริงจากระบบให้ใช้: alertMessage = error.localizedDescription
                             showAlert = true
                         }
                     }

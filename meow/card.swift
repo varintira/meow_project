@@ -22,6 +22,16 @@ struct CatCardView: View {
                 Text("Found at: \(cat.locationFound)")
                     .font(.caption)
                     .foregroundColor(.blue)
+                
+                Text("Created by: \(cat.createdBy)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                if !cat.phone.isEmpty {
+                    Text("Tel: \(cat.phone)")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
             }
             
             Spacer() // ดันเนื้อหาไปชิดซ้าย

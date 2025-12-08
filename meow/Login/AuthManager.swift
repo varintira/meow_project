@@ -27,7 +27,7 @@ class AuthManager: ObservableObject {
             await fetchUser()
         } catch {
             print("DEBUG: Failed to log in with error \(error.localizedDescription)")
-            throw error // <--- เพิ่มบรรทัดนี้ครับ! เพื่อโยน Error กลับไปให้หน้า Login
+            throw error 
         }
     }
     
@@ -42,7 +42,7 @@ class AuthManager: ObservableObject {
             await fetchUser()
         } catch {
             print("DEBUG: Failed to create user with error \(error.localizedDescription)")
-            throw error // <--- เพิ่มบรรทัดนี้เช่นกันครับ
+            throw error
         }
     }
     

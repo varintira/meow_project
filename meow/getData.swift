@@ -14,6 +14,7 @@ struct Cat: Identifiable {
     let img: String // เป็น String เพื่อรองรับ Base64 และ URL
     let latitude: Double?
     let longitude: Double?
+    let phone: String
 }
 
 struct Fav: Identifiable {
@@ -22,9 +23,6 @@ struct Fav: Identifiable {
     let userID: String // ระบุเจ้าของ Fav
 }
 
-
-
-// (หมายเหตุ: struct User ต้องมีอยู่ในไฟล์ User.swift แล้วนะครับ)
 
 // MARK: - getData Class
 class GetData: ObservableObject {
@@ -64,7 +62,8 @@ class GetData: ObservableObject {
                         createdBy: data["createdBy"] as? String ?? "",
                         img: imgString,
                         latitude: data["latitude"] as? Double,
-                        longitude: data["longitude"] as? Double
+                        longitude: data["longitude"] as? Double,
+                        phone: data["phone"] as? String ?? ""
                     )
                 } ?? []
             }
@@ -140,16 +139,4 @@ class GetData: ObservableObject {
         }
     }
 
-    // MARK: - Load Reviews & Users
-    func loadReviews() {
-        // ... code เดิม ...
-    }
-
-    // MARK: - Load All Data
-    func loadAllData() {
-        loadCats()
-        
-        // ⚠️ แก้ไขตรงนี้: ลบ loadFavorites() ออก เพราะมันต้องการ userID
-        // เราย้ายไปโหลดในหน้า FavoritesView แทนแล้ว
-    }
 }
